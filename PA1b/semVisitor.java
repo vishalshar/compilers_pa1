@@ -1,14 +1,14 @@
 import java.util.*;
 class semVisitor implements Visitor {
     SymbolTable<String, Attr> st;
-    
+
     semVisitor() {
         st = new SymbolTable<String, Attr>();
         st.enterScope();
     }
 
     public void visit(Program p) {
-        for (Stmt s: p.stl) { 
+        for (Stmt s: p.stl) {
             s.accept(this);
         }
         st.exitScope();
