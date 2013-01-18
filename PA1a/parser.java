@@ -53,10 +53,8 @@ class parser {
         //sl.addLast(s4);
 
         root = new Program(sl);
-        System.out.println("AST constructed");
         SymbolTable<String,Attr> st = new SymbolTable<String,Attr>();
         root.semant(st);
-        st.display();
-        root.interp();
+        root.interp(st);
     }
 }
