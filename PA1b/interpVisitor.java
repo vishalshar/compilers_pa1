@@ -12,7 +12,6 @@ class interpVisitor implements Visitor {
       for (Stmt s: p.stl) {
         s.accept(this);
       }
-      st.display();
       st.exitScope();
     }
 
@@ -46,5 +45,6 @@ class interpVisitor implements Visitor {
     public void visit(eseqExpr ex) {
       ex.s.accept(this);
       ex.e.accept(this);
+      ex.val = ex.e.val;
     }
 }
