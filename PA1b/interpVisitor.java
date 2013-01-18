@@ -22,9 +22,16 @@ class interpVisitor implements Visitor {
       s.ie.a = new Attr(s.re.val);
       st.addId(s.ie.id, s.ie.a);
     }
-    public void visit(printStmt s) { }
+    public void visit(printStmt s) {
+      for (Expr e:s.exl) {e.accept(this);}
+      for (Expr e:s.exl) {System.out.printf("%d ", e.val);}
+      System.out.printf("\n");
+    }
     public void visit(Expr e) {}
-    public void visit(idExpr e) { }
+    public void visit(idExpr e) {
+      Attr a = st.lookup(e.id);
+      if(a != null) e.val = a.v;
+    }
     public void visit(opExpr e) {
       e.eleft.accept(this);
       e.eright.accept(this);
